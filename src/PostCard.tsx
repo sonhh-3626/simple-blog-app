@@ -1,10 +1,13 @@
+import Button from './Button'
+import styles from "./PostCard.module.css";
+
 export function PostCard(props: { title: string; author: string; date: Date; excerpt: string;  }) {
   return (
-    <div className="post-card">
+    <div className={styles['post-card-border']}>
       <h2>{props.title}</h2>
       <p>By {props.author} on {props.date.toLocaleDateString()}</p>
       <p>{props.excerpt}</p>
-      <button>Read More</button>
+      <Button text="Read More" />
     </div>
   );
 }
