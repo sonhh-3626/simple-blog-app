@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Header } from './Header';
 import { PostCard } from './PostCard';
 import { initialPosts } from './data/initialPosts.ts';
@@ -10,11 +12,13 @@ type PostProps = {
 };
 
 function App() {
+  const [posts, setPosts] = useState<PostProps[]>(initialPosts);
+
   return (
     <>
       <Header title="Chào mừng đến với Blog của tôi!" />
       <main style={{ padding: '0 20px', backgroundColor: '#f9f9f9' }}>
-        {initialPosts.map((post : PostProps, index : number) => (
+        {posts.map((post : PostProps, index : number) => (
           <PostCard
             key={index}
             title={post.title}
