@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Header } from './Header';
 import { PostCard } from './PostCard';
@@ -12,7 +12,24 @@ type PostProps = {
 };
 
 function App() {
-  const [posts, setPosts] = useState<PostProps[]>(initialPosts);
+  const [posts, setPosts] = useState<PostProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    let dataFromLocalStorage = localStorage.getItem("posts");
+    if (dataFromLocalStorage) {
+      setPosts(JSON.parse(dataFromLocalStorage));
+    } else {
+      setPosts(initialPosts);
+    }
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if(!loading) {
+      localStorage.setItem("posts", JSON.stringify(posts));
+    }
+  }, [posts, loading]);
 
   return (
     <>
