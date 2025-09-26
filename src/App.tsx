@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Header } from './Header';
-import { PostCard } from './PostCard';
+import Header from './components/Header.tsx';
+import PostDetail from './components/PostDetail';
 import { initialPosts } from './data/initialPosts.ts';
+import About from './pages/About';
+import HomePage from './pages/HomePage';
 
-type PostProps = {
+export type PostProps = {
+  id: number;
   title: string;
   author: string;
   date: Date;
@@ -32,21 +36,17 @@ function App() {
   }, [posts, loading]);
 
   return (
-    <>
+    <BrowserRouter>
       <Header title="Chào mừng đến với Blog của tôi!" />
       <main style={{ padding: '0 20px', backgroundColor: '#f9f9f9' }}>
-        {posts.map((post : PostProps, index : number) => (
-          <PostCard
-            key={index}
-            title={post.title}
-            author={post.author}
-            date={post.date}
-            excerpt={post.excerpt}
-          />
-        ))}
+        <Routes>
+          <Route path="/" element={<HomePage posts={posts} />} />
+          <Route path="/post/:id" element={<PostDetail/>} />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </main>
-    </>
+    </BrowserRouter>
   )
 }
 
-export default App
+export default App;

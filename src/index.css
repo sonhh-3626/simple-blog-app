@@ -1,5 +1,20 @@
+:root {
+  --color-primary-blue: #007bff;
+  --color-dark-blue-hover: #0056b3;
+  --color-light-gray: #f9f9f9;
+  --color-medium-gray: #ddd;
+  --color-dark-gray: #333;
+  --color-lighter-dark-gray: #555;
+  --color-even-lighter-gray: #888;
+  --color-white: #fff;
+  --color-shadow: rgba(0,0,0,0.08);
+  --color-header-bg: #282c34;
+  --color-react-logo-blue: #646cffaa;
+  --color-react-logo-green: #61dafbaa;
+}
+
 h1 {
   font-family: 'Arial', sans-serif;
   text-align: center;
-  color: #333;
+  color: var(--color-dark-gray);
 }
