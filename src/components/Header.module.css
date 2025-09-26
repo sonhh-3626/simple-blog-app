@@ -1,0 +1,26 @@
+.headerContainer {
+  background-color: var(--color-header-bg);
+  color: var(--color-white);
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 10px;
+  color: var(--color-white);
+}
+
+nav {
+  font-size: 25px;
+}
+
+.navLink {
+  color: var(--color-white);
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
