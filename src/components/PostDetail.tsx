@@ -1,12 +1,16 @@
 import { useParams } from "react-router-dom";
-import { initialPosts } from "../data/initialPosts";
 
 import styles from "./PostDetail.module.css";
 import Button from "./Button";
+import type { PostProps } from "../types";
 
-export default function PostDetail() {
+interface PostDetailProps {
+  posts: PostProps[];
+}
+
+export default function PostDetail({ posts }: PostDetailProps) {
   const { id } = useParams();
-  const post = initialPosts.find(p => p.id === parseInt(id || ""));
+  const post = posts.find((p) => p.id === parseInt(id || ""));
 
   if (!post) {
     return <div>Bài viết không tìm thấy.</div>;
@@ -24,6 +28,7 @@ export default function PostDetail() {
         Bởi {post.author} vào ngày {post.date.toLocaleDateString()}
       </p>
       <p className={styles["post-detail-excerpt"]}>{post.excerpt}</p>
+      <p className={styles["post-detail-content"]}>{post.content}</p>
     </div>
   );
 }
