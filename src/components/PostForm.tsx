@@ -1,39 +1,66 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import type { PostProps } from "../types";
+import type { PostFormProps } from "../types";
 import styles from "./PostForm.module.css";
 
-interface PostFormProps {
-  setPosts: React.Dispatch<React.SetStateAction<PostProps[]>>;
-}
+export default function PostForm({ posts, setPosts }: PostFormProps) {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-export default function PostForm({ setPosts }: PostFormProps) {
+  const post = posts.find((p) => p.id === Number(id));
+
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title);
+      setAuthor(post.author);
+      setExcerpt(post.excerpt);
+      setContent(post.content);
+    }
+  }, [post]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newPost: PostProps = {
-      id: Date.now(),
-      title,
-      author,
-      excerpt,
-      content,
-      date: new Date(),
-    };
 
     if (!title || !author || !excerpt || !content) {
       alert("Vui lòng điền đầy đủ tất cả các trường.");
       return;
     }
 
-    setPosts((prevPosts: PostProps[]) => [...prevPosts, newPost]);
+    if (post) {
+      const updatedPost: PostProps = {
+        ...post,
+        title,
+        author,
+        excerpt,
+        content,
+        date: new Date(),
+      };
 
-    navigate(`/post/${newPost.id}`);
-  }
+      setPosts((prevPosts) =>
+        prevPosts.map((p) => (p.id === post.id ? updatedPost : p))
+      );
+
+      navigate(`/post/${post.id}`);
+    } else {
+      const newPost: PostProps = {
+        id: Date.now(),
+        title,
+        author,
+        excerpt,
+        content,
+        date: new Date(),
+      };
+
+      setPosts((prevPosts) => [...prevPosts, newPost]);
+      navigate(`/post/${newPost.id}`);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className={styles.formContainer}>
@@ -68,7 +95,10 @@ export default function PostForm({ setPosts }: PostFormProps) {
           onChange={(e) => setContent(e.target.value)}
         />
       </div>
-      <button type="submit" className={styles.submitButton}>Submit</button>
+
+      <button type="submit" className={styles.submitButton}>
+        {post ? "Update Post" : "Create Post"}
+      </button>
     </form>
-  )
+  );
 }

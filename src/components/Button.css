@@ -1,8 +1,12 @@
 .btn {
-  background-color: var(--color-link);
+  background-color: var(--color-primary-blue);
   color: var(--color-white);
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--color-dark-blue-hover);
 }

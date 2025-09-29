@@ -6,3 +6,8 @@ export type PostProps = {
   excerpt: string;
   content: string;
 };
+
+export type PostFormProps = {
+  posts: PostProps[];
+  setPosts: React.Dispatch<React.SetStateAction<PostProps[]>>;
+}
