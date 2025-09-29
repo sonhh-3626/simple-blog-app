@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage';
 
 import { initialPosts } from './data/initialPosts.ts';
 import type { PostProps } from './types';
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   const [posts, setPosts] = useState<PostProps[]>([]);
@@ -36,18 +37,20 @@ function App() {
   }, [posts, loading]);
 
   return (
-    <BrowserRouter>
-      <Header title="Chào mừng đến với Blog của tôi!" />
-      <main style={{ padding: '0 20px', backgroundColor: '#f9f9f9' }}>
-        <Routes>
-          <Route path="/" element={<HomePage posts={posts} />} />
-          <Route path="/post/:id" element={<PostDetail posts={posts} setPosts={setPosts} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/new-post" element={<PostForm posts={posts} setPosts={setPosts} />} />
-          <Route path="/edit-post/:id" element={<PostForm posts={posts} setPosts={setPosts} />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Header title="Chào mừng đến với Blog của tôi!" />
+          <main style={{ padding: '0 80px' }}>
+          <Routes>
+            <Route path="/" element={<HomePage posts={posts} />} />
+            <Route path="/post/:id" element={<PostDetail posts={posts} setPosts={setPosts} />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/new-post" element={<PostForm posts={posts} setPosts={setPosts} />} />
+            <Route path="/edit-post/:id" element={<PostForm posts={posts} setPosts={setPosts} />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

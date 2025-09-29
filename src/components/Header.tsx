@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from "./Header.module.css";
+import ThemedButton from "./ThemedButton";
 
 type HeaderProps = {
   title: string;
@@ -13,6 +14,7 @@ export default function Header({ title }: HeaderProps) {
         <Link to="/" className={styles.navLink}>Home</Link>
         <Link to="/new-post" className={styles.navLink}>Create new post</Link>
         <Link to="/about" className={styles.navLink}>About</Link>
+        <ThemedButton />
       </nav>
     </div>
   );
