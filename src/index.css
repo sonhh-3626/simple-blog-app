@@ -1,6 +1,11 @@
 :root {
   --color-primary-blue: #007bff;
   --color-dark-blue-hover: #0056b3;
+  --color-react-logo-blue: #646cffaa;
+  --color-react-logo-green: #61dafbaa;
+}
+
+body.light {
   --color-light-gray: #f9f9f9;
   --color-medium-gray: #ddd;
   --color-dark-gray: #333;
@@ -9,8 +14,23 @@
   --color-white: #fff;
   --color-shadow: rgba(0,0,0,0.08);
   --color-header-bg: #282c34;
-  --color-react-logo-blue: #646cffaa;
-  --color-react-logo-green: #61dafbaa;
+
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+body.dark {
+  --color-light-gray: #2a2a2a;
+  --color-medium-gray: #444;
+  --color-dark-gray: #f0f0f0;
+  --color-lighter-dark-gray: #ccc;
+  --color-even-lighter-gray: #aaa;
+  --color-white: #1e1e1e;
+  --color-shadow: rgba(255,255,255,0.08);
+  --color-header-bg: #282c34;
+
+  background-color: #1e1e1e;
+  color: #fff;
 }
 
 h1 {
