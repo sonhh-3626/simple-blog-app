@@ -59,3 +59,30 @@
   margin-bottom: 32px;
   white-space: pre-line;
 }
+
+.updatedPost {
+  display: inline-block;
+  background-color: var(--color-primary-blue);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.updatedPost:hover {
+  background-color: var(--color-dark-blue-hover);
+}
+
+.handleBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionGroup {
+  display: flex;
+  gap: 12px;
+}
