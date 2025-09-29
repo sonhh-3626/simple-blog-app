@@ -1,6 +1,6 @@
 import React from 'react';
 import PostCard from '../components/PostCard';
-import type { PostProps } from '../App';
+import type { PostProps } from '../types';
 
 type HomePageProps = {
   posts: PostProps[];
